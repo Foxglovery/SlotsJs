@@ -35,6 +35,23 @@ const getNumberOfLines = () => {
   }
 };
 
-const depositAmount = deposit();
+const getBet = (balance, lines) => {
+  while (true) {
+    const bet = prompt("How much would you wager per line?: ");
+    const numberBet = parseFloat(bet);
+    const maximumBet = Math.floor(balance / lines);
+
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance / lines) {
+      console.log(
+        `Invalid Input, mortal! Your maximum bet for this many lines is ${maximumBet}`
+      );
+    } else {
+      return numberBet;
+    }
+  }
+};
+
+let balance = deposit();
 // console.log(depositAmount);
 const numberOfLines = getNumberOfLines();
+const bet = getBet(balance, numberOfLines);
